@@ -128,7 +128,10 @@ function addnewtask() {
         color: grey;
     }
     .but:hover {
-        color: var(--color);
+        color: rgb(169, 162, 162)
+    }
+    .but::after{
+        color: grey;
     }
     .inp {
         width: 100%;
