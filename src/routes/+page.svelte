@@ -1,4 +1,4 @@
-<script>
+<script lang="js">
 // @ts-nocheck
 import ThemeLightDark  from "svelte-material-icons/ThemeLightDark.svelte";
 import FormatHeader1  from "svelte-material-icons/FormatHeader1.svelte";
@@ -21,16 +21,35 @@ function saveastxt() {
     link.click();
 }
 
-function bold(){
-    
-    document.execCommand(bold,false,null)
+function bold() {
+    document.execCommand('bold', false, null);
+    const textarea = document.getElementById("fake_textarea");
+    textareavalue = textarea.innerHTML;
+
+    // Move the cursor to the end of the selection and toggle bold off
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        range.collapse(false); // Collapse the range to the end point
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('bold', false, null); // Toggle bold off
+    }
 }
 
-function addh1() {
-    const h1 = document.createElement("h1");
-    h1.textContent = "New Header";
-    const element = document.getElementById("texta");
-    element.insertBefore(h1, element.firstChild); // Inserts the new header at the beginning of the texta div, respecting the reversed order
+function addInput() {
+    console.log("addInput function called"); // Add this line
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "New Input";
+    input.style.fontSize = "2em"; // Set the font size to match the h1 element
+
+    const container = document.getElementById("input_container");
+    if (container) {
+        container.appendChild(input); // Appends the new input to the container
+    } else {
+        console.error("Element with id 'input_container' not found.");
+    }
 }
 
 function toggletheme() {
@@ -70,7 +89,7 @@ function addnewtask() {
     </div>
     <div class="controls2">
         <button class="but2">
-            <FormatHeader1 on:click={addh1} {size} {color}/>
+            <FormatHeader1 on:click={addInput} {size} {color}/>
         </button>
         <button class="but2">
             <FormatHeader2 {size} {color}/>
@@ -79,8 +98,9 @@ function addnewtask() {
             <FormatBold {size} {color}/>
         </button>
     </div>
+    <div id="input_container"></div>
     <div id="texta" class="reversed">
-        <textarea bind:this={textareavalue} style={`color: ${color};`} class="tarea" placeholder="Type something..." id=""></textarea>
+        <div class="tarea" id="fake_textarea" contenteditable style={`color: ${color};`} placeholder="Type something..." bind:innerHTML={textareavalue}></div>
     </div>
 </div>
 
@@ -89,14 +109,17 @@ function addnewtask() {
         --color: #191919;
     }
     .area {
+        transition: all .2s ease-in-out;
+        font-family: 'Roboto';
         margin: 10px;
     }
     .tarea {
         width: 100%;
+        overflow:visible;
         height: 500px;
         border: none;
         background-color: transparent;
-        margin: 10px;
+        margin: 12px;
         font-size: 15px;
     }
     .tarea:focus {
