@@ -34,18 +34,18 @@ function saveastxt() {
     
 
      onMount(() => {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      if (prefersDark) {
-          setMode("dark");
-          document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
-          document.body.style.backgroundColor = "#191919";
-          color = "#cfd0d4";
-      } else {
-          setMode("light");
-          document.documentElement.style.setProperty('--border-color', '#edeceb');
-          document.body.style.backgroundColor = "white";
-          color = "gray";
-      }
+      if ($mode === "light") {
+        setMode("dark");
+        color = "#cfd0d4";
+        document.querySelector('body').style = "background-color:#191919;";
+        document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
+    } else {
+        setMode("light");
+        document.querySelector('body').style = "background-color:white;";
+        color = "gray";
+        document.documentElement.style.setProperty('--border-color', '#edeceb');
+
+    }
   });
 
 
