@@ -17,7 +17,7 @@ import "@friendofsvelte/tipex/styles/Controls.css";
 import "@friendofsvelte/tipex/styles/EditLink.css";
 import "@friendofsvelte/tipex/styles/CodeBlock.css";
 import {Tipex} from '@friendofsvelte/tipex';
-  import { onMount } from "svelte";
+ import { onMount } from "svelte";
 
 
 
