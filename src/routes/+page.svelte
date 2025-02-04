@@ -1,14 +1,6 @@
 <script lang="js">
 // @ts-nocheck
-import ThemeLightDark  from "svelte-material-icons/ThemeLightDark.svelte";
-import FormatHeader1  from "svelte-material-icons/FormatHeader1.svelte";
-import FormatHeader2  from "svelte-material-icons/FormatHeader2.svelte";
-import FormatBold  from "svelte-material-icons/FormatBold.svelte";
-import FormatItalic  from "svelte-material-icons/FormatItalic.svelte";
-import CodeBraces  from "svelte-material-icons/CodeBraces.svelte";
-import FormatParagraph  from "svelte-material-icons/FormatParagraph.svelte";
-import ContentSave  from "svelte-material-icons/ContentSave.svelte";
-import Drag from "svelte-material-icons/Drag.svelte";
+ import { SunMoon, Heading1, Heading2, Bold, Italic, Code, Text, Save, GripVertical } from "lucide-svelte";
 import { ModeWatcher, setMode, mode } from "mode-watcher";
 import "@friendofsvelte/tipex/styles/Tipex.css";
 import {Utility} from "@friendofsvelte/tipex";
@@ -108,20 +100,20 @@ function addnewtask() {
         </button>
         <input class="inp" style={`color: ${color};`} type="Title" bind:value={windowtitle} name="Title..." placeholder="Title" id="">
         <button class="but" on:click={toggletheme}>
-            <ThemeLightDark {color} {size} />
+            <SunMoon  {color} {size} />
         </button>
         <button class="but" on:click={() => saveastxt()}>
-            <ContentSave {size} {color}/>
+            <Save  {size} {color}/>
         </button>
     </div> 
     <hr class="area">
     <div class="controls2">
-        <button on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} class:active={editor?.isActive('heading', { level: 1 })} class="but2" aria-label="Heading 1" type="button"><FormatHeader1 {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} class:active={editor?.isActive('heading', { level: 2 })} class="but2" aria-label="Heading 2" type="button"><FormatHeader2 {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor?.isActive('paragraph')} class="but2" aria-label="Italic" type="button"><FormatParagraph {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().toggleBold().run()} class:active={editor?.isActive('bold')} class="but2" aria-label="Bold" type="button"><FormatBold {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().toggleItalic().run()} class:active={editor?.isActive('italic')} class="but2" aria-label="Italic" type="button"><FormatItalic {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().toggleCodeBlock().run()} class:active={editor?.isActive('codeBlock')} class="but2" aria-label="Code block" type="button"><CodeBraces {size} {color}/></button>    
+        <button on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} class:active={editor?.isActive('heading', { level: 1 })} class="but2" aria-label="Heading 1" type="button"><Heading1  {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} class:active={editor?.isActive('heading', { level: 2 })} class="but2" aria-label="Heading 2" type="button"><Heading2  {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor?.isActive('paragraph')} class="but2" aria-label="Italic" type="button"><Text  {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().toggleBold().run()} class:active={editor?.isActive('bold')} class="but2" aria-label="Bold" type="button"><Bold  {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().toggleItalic().run()} class:active={editor?.isActive('italic')} class="but2" aria-label="Italic" type="button"><Italic {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().toggleCodeBlock().run()} class:active={editor?.isActive('codeBlock')} class="but2" aria-label="Code block" type="button"><Code  {size} {color}/></button>    
 
     </div>
     
