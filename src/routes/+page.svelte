@@ -33,6 +33,21 @@ function saveastxt() {
     }
     
 
+     onMount(() => {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (prefersDark) {
+          setMode("dark");
+          document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
+          document.body.style.backgroundColor = "#191919";
+          color = "#cfd0d4";
+      } else {
+          setMode("light");
+          document.documentElement.style.setProperty('--border-color', '#edeceb');
+          document.body.style.backgroundColor = "white";
+          color = "gray";
+      }
+  });
+
 
 function bold() {
     document.execCommand('bold', false, null);
