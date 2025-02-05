@@ -1,6 +1,6 @@
-body head{
+*{
     transition: all .2s ease-in-out;
-    font-family: 'Poppins';
+    font-family: 'Roboto', sans-serif;
         font-size: 22px;
 }
 .roboto-thin {
@@ -20,6 +20,24 @@ body head{
     font-weight: 400;
     font-style: normal;
 }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+    
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+    
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+    
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
 .roboto-medium {
     font-family: "Roboto", sans-serif;

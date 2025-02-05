@@ -1,6 +1,6 @@
 <script lang="js">
 // @ts-nocheck
- import { SunMoon, Heading1, Heading2, Bold, Italic, Code, Text, Save, GripVertical } from "lucide-svelte";
+ import { SunMoon, Heading1, Heading2, Bold, Italic, Code, Pilcrow, Save, GripVertical, List, ListOrdered } from "lucide-svelte";
 import { ModeWatcher, setMode, mode } from "mode-watcher";
 import "@friendofsvelte/tipex/styles/Tipex.css";
 import {Utility} from "@friendofsvelte/tipex";
@@ -11,7 +11,7 @@ import "@friendofsvelte/tipex/styles/CodeBlock.css";
 import {Tipex} from '@friendofsvelte/tipex';
  import { onMount } from "svelte";
 
-
+   
 
 let tipexval = '';
 let body = ``;
@@ -19,10 +19,18 @@ let windowtitle = '';
 let colorb = '';
 let color = "#cfd0d4";
 let size = "20";
+let tipex;
 let textareavalue;
 let editor;
+
+
+
+
+
+
+
 function saveastxt() {
-        const textareavalue = editor.getHTML(); // Get the value from the textarea
+        const textareavalue = editor.getText(); // Get the value from the textarea
         console.log(textareavalue)
         const blob = new Blob([textareavalue], { type: "text/plain" });
         const fileurl = URL.createObjectURL(blob);
@@ -33,20 +41,23 @@ function saveastxt() {
     }
     
 
-     onMount(() => {
-      if ($mode === "light") {
-        setMode("dark");
+onMount(async() => {
+    if ($mode === "light") {
+         document.querySelector('body').style = "background-color:white;";
+        color = "gray";
+        document.documentElement.style.setProperty('--border-color', '#edeceb');
+    } else {
         color = "#cfd0d4";
         document.querySelector('body').style = "background-color:#191919;";
         document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
-    } else {
-        setMode("light");
-        document.querySelector('body').style = "background-color:white;";
-        color = "gray";
-        document.documentElement.style.setProperty('--border-color', '#edeceb');
 
     }
-  });
+        
+        
+
+});     
+
+
 
 
 function bold() {
@@ -125,10 +136,13 @@ function addnewtask() {
     <div class="controls2">
         <button on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} class:active={editor?.isActive('heading', { level: 1 })} class="but2" aria-label="Heading 1" type="button"><Heading1  {size} {color}/></button>
         <button on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} class:active={editor?.isActive('heading', { level: 2 })} class="but2" aria-label="Heading 2" type="button"><Heading2  {size} {color}/></button>
-        <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor?.isActive('paragraph')} class="but2" aria-label="Italic" type="button"><Text  {size} {color}/></button>
+        <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor?.isActive('paragraph')} class="but2" aria-label="Italic" type="button"><Pilcrow  {size} {color}/></button>
         <button on:click={() => editor.chain().focus().toggleBold().run()} class:active={editor?.isActive('bold')} class="but2" aria-label="Bold" type="button"><Bold  {size} {color}/></button>
         <button on:click={() => editor.chain().focus().toggleItalic().run()} class:active={editor?.isActive('italic')} class="but2" aria-label="Italic" type="button"><Italic {size} {color}/></button>
         <button on:click={() => editor.chain().focus().toggleCodeBlock().run()} class:active={editor?.isActive('codeBlock')} class="but2" aria-label="Code block" type="button"><Code  {size} {color}/></button>    
+        <div class="vl"></div>
+        <button on:click={() => editor.commands.toggleList('bulletList', 'listItem')} class:active={editor?.isActive('list')} class="but2" aria-label="List" type="button"><List {size} {color}/></button>
+        <button on:click={() => editor.commands.toggleList('orderedList', 'listItem')} class:active={editor?.isActive('list')} class="but2" aria-label="List" type="button"><ListOrdered {size} {color}/></button>
 
     </div>
     
@@ -147,21 +161,38 @@ function addnewtask() {
             -button tipex-button-extra tipex-button-rigid" aria-label="Underline" type="button">U</button>
             <button on:click={() => editor.chain().focus().toggleStrike().run()} class:active={editor?.isActive('strike')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="Strikethrough" type="button">S</button>  
             <button on:click={() => editor.chain().focus().toggleCodeBlock().run()} class:active={editor?.isActive('codeBlock')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="Code block" type="button">Code</button>    
+            <button on:click={() => editor.chain().focus().toggleList().run()} class:active={editor?.isActive('list')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="List" type="button">List</button>
+            <button on:click={() => editor.chain().focus().toggleLink().run()} class:active={editor?.isActive('link')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="Link" type="button">Link</button>
+            <button on:click={() => editor.chain().focus().toggleImage().run()} class:active={editor?.isActive('image')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="Image" type="button">Image</button>
+            <button on:click={() => editor.chain().focus().toggleBlockquote().run()} class:active={editor?.isActive('blockquote')} class="tipex-edit
         </div> -->
         
-        <Tipex {body} bind:tipex={editor} focused
-    style=" width:100%; margin-bottom: 0;" 
+        <Tipex {body} contenteditable="true"  bind:tipex={editor} focused
+    style="width:100%; margin-bottom: 0;" 
     class="h-[100%] border border-neutral-500">
-
 </Tipex>
 
-
 </div>
+<h2 class="credit">Made by <a href="http://punchoneman.xyz">Ansh Wadhwa</a></h2>
 
 <style>
     :root {
         --color: #161716;
-        --border-color : rgb(32, 31, 31);
+        --border-color : #edeceb;
+    }
+
+
+    .credit{
+        
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+        font-size: 14px;
+        color: grey;
+        font-style: normal;
+        font-weight: 400;
+        font-family: 'Roboto';
     }
     .area {
         transition: all .2s ease-in-out;
@@ -203,6 +234,14 @@ function addnewtask() {
         font-size: 30px;
         margin: 8px;
         color: grey;
+    }
+    .vl{
+        border-left: 2px solid grey;
+        height:20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: auto;
+        margin-bottom:8px;
     }
     .but2 {
         background-color: transparent;
