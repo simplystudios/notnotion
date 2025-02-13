@@ -9,7 +9,7 @@ import "@friendofsvelte/tipex/styles/Controls.css";
 import "@friendofsvelte/tipex/styles/EditLink.css";
 import "@friendofsvelte/tipex/styles/CodeBlock.css";
 import {Tipex} from '@friendofsvelte/tipex';
- import { onMount } from "svelte";
+import { onMount } from "svelte";
 
    
 
@@ -168,12 +168,12 @@ function addnewtask() {
         </div> -->
         
         <Tipex {body} contenteditable="true"  bind:tipex={editor} focused
-    style="width:100%; margin-bottom: 0;" 
+    style=" margin-bottom: 0;" 
     class="h-[100%] border border-neutral-500">
 </Tipex>
 
 </div>
-<h2 class="credit">Made by <a href="http://punchoneman.xyz">Ansh Wadhwa</a></h2>
+<h2 class="credit">Made by <a style="font-size:14px;" href="http://punchoneman.xyz">Ansh Wadhwa</a></h2>
 
 <style>
     :root {
@@ -259,7 +259,7 @@ function addnewtask() {
         width: 100%;
         border: none;
         background-color: transparent;
-        font-size: 20px;
+        
     }
     .inp:focus {
         border: none;
@@ -269,4 +269,8 @@ function addnewtask() {
         display: flex;
         flex-direction: column-reverse; /* This reverses the vertical order */
     }
+    /* .tipex-content {
+    font-size: 10px !important;
+} */
+
 </style>
