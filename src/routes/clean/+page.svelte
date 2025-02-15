@@ -132,8 +132,8 @@ function addnewtask() {
             <Save  {size} {color}/>
         </button>
     </div> 
-    <hr class="area">
-    <div class="controls2">
+    <hr class="btarea">
+    <!-- <div class="controls2">
         <button on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} class:active={editor?.isActive('heading', { level: 1 })} class="but2" aria-label="Heading 1" type="button"><Heading1  {size} {color}/></button>
         <button on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} class:active={editor?.isActive('heading', { level: 2 })} class="but2" aria-label="Heading 2" type="button"><Heading2  {size} {color}/></button>
         <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor?.isActive('paragraph')} class="but2" aria-label="Italic" type="button"><Pilcrow  {size} {color}/></button>
@@ -144,7 +144,7 @@ function addnewtask() {
         <button on:click={() => editor.commands.toggleList('bulletList', 'listItem')} class:active={editor?.isActive('list')} class="but2" aria-label="List" type="button"><List {size} {color}/></button>
         <button on:click={() => editor.commands.toggleList('orderedList', 'listItem')} class:active={editor?.isActive('list')} class="but2" aria-label="List" type="button"><ListOrdered {size} {color}/></button>
 
-    </div>
+    </div> -->
     
 
     <!-- <div id="input_container"></div>
@@ -166,17 +166,18 @@ function addnewtask() {
             <button on:click={() => editor.chain().focus().toggleImage().run()} class:active={editor?.isActive('image')} class="tipex-edit-button tipex-button-extra tipex-button-rigid" aria-label="Image" type="button">Image</button>
             <button on:click={() => editor.chain().focus().toggleBlockquote().run()} class:active={editor?.isActive('blockquote')} class="tipex-edit
         </div> -->
-            <Tipex {body} contenteditable="true"  bind:tipex={editor} focused
-            style="height: auto; /* Make editor take full viewport height */
-  overflow:inherit; /* Enable scrolling inside editor */"
-    class="tipex-editor">
+        
+        <Tipex {body} contenteditable="true"  bind:tipex={editor} focused
+    style="height:auto; margin-bottom: 0;" 
+    class="h-[100%] border border-neutral-500">
 </Tipex>
+
 </div>
-<h2 class="credit"><a style="font-size:14px;" href="http://punchoneman.xyz">Ansh Wadhwa</a> &bull; <a style="font-size:14px;" href="/clean">Clean Mode</a></h2>
+<!-- <h2 class="credit">Made by <a style="font-size:14px;" href="http://punchoneman.xyz">Ansh Wadhwa</a></h2> -->
 
 <style>
     :root {
-        --color: #161716;
+        --color: #171717;
         --border-color : #edeceb;
     }
 
@@ -185,7 +186,7 @@ function addnewtask() {
         
   bottom: 0;
   width: 100%;
-  margin-left: 15px;
+  text-align: center;
   margin-top: 10px;
         font-size: 14px;
         color: grey;
@@ -194,6 +195,15 @@ function addnewtask() {
         font-family: 'Roboto';
     }
     .area {
+        transition: all .2s ease-in-out;
+        font-family: 'Roboto';
+        border: 1;
+        /* border-radius: 10px;
+        border-style: solid;
+        border-color: var(--border-color); */
+        margin: 10px;
+    }
+    .btarea {
         transition: all .2s ease-in-out;
         font-family: 'Roboto';
         border: 1;
@@ -212,15 +222,6 @@ function addnewtask() {
         margin: 12px;
         font-size: 15px;
     }
-    .tipex-editor {
-  width: 100%;
-  height: 100vh; /* Make editor take full viewport height */
-  overflow: auto; /* Enable scrolling inside editor */
-  border: 1px solid #6b7280; /* Neutral gray border */
-  border-radius: 8px;
-  padding: 10px;
-  box-sizing: border-box;
-}
     .tarea:focus {
         outline: none;
     }
@@ -265,6 +266,7 @@ function addnewtask() {
     }
     .inp {
         width: 100%;
+        font-size: 18px;
         border: none;
         background-color: transparent;
         
@@ -277,15 +279,8 @@ function addnewtask() {
         display: flex;
         flex-direction: column-reverse; /* This reverses the vertical order */
     }
-    .full-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    z-index: 9999;
-    padding: 20px;
-  }
+    /* .tipex-content {
+    font-size: 10px !important;
+} */
 
 </style>
