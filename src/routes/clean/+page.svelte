@@ -110,7 +110,7 @@ function toggletheme() {
 
 
 function addnewtask() {
-    window.open("/", '_blank');
+    window.open("/clean", '_blank');
     document.querySelector('title').textContent = windowtitle.value;
 }
 
