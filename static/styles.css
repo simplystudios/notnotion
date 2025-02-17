@@ -2,6 +2,24 @@
     transition: all .2s ease-in-out;
     
 }
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+a {
+    color: #747474;
+    /* Change this to your desired color */
+    text-decoration: none;
+    /* Removes underline */
+}
+
+a:hover {
+    color: #384350;
+    /* Slightly darker color on hover */
+    text-decoration: underline;
+    /* Adds underline on hover */
+}
 @layer base {
     :root {
         --sidebar-background: 0 0% 98%;

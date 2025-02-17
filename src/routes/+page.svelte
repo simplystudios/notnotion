@@ -264,6 +264,7 @@ function addnewtask() {
         color: grey;
     }
     .inp {
+        font-size: 17px;
         width: 100%;
         border: none;
         background-color: transparent;
